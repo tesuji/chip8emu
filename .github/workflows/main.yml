@@ -47,6 +47,24 @@ jobs:
         with:
           path: target
           key: ${{ runner.os }}-cargo-target-dir-${{ steps.cargo-target-cache.outputs.rust_hash }}-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo check
+
+      - run: sudo apt-get install libsdl2-dev
+        if: runner.os == 'Linux'
+      - run: |
+          mkdir sdl-vendor
+          cd sdl-vendor
+          wget https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip
+          unzip SDL2-devel-2*.zip
+          cp SDL2-2.0.*\lib\x64\*.lib 'C:\Program Files\Rust\lib\rustlib\x86_64-pc-windows-msvc\lib'
+          cp SDL2-2.0.*\lib\x64\*.dll ..
+        shell: bash
+        if: runner.os == 'Windows'
+      - run: |
+          brew install sdl2
+          echo LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib" >> $GITHUB_ENV
+        if: runner.os == 'macOS'
+
       - run: cargo check --all
       - run: cargo build
       - run: cargo test
