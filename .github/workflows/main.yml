@@ -48,5 +48,5 @@ jobs:
       - run: cargo build
       - run: cargo test
       - run: |
-        cd interpreter
-        cargo build
+          cd interpreter
+          cargo build
