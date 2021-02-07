@@ -1,0 +1,18 @@
+[package]
+name = "interpreter"
+version = "0.1.0"
+authors = ["Lzu Tao <taolzu@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.chip8emu]
+path = ".."
+version = "0.1"
+default-features = false
+# features = ["original"]
+
+[dependencies.sdl2]
+version = "0.34.3"
+default-features = false
+features = ["use-pkgconfig"]

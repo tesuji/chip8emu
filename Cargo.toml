@@ -1,0 +1,31 @@
+[package]
+name = "chip8emu"
+version = "0.1.0"
+authors = ["Lzu Tao <taolzu@gmail.com>"]
+edition = "2018"
+description = "A simple Chip-8 interpreter"
+
+# More configurations at <https://doc.rust-lang.org/cargo/reference/manifest.html>.
+
+[lib]
+crate-type = ["dylib"]
+
+[profile.dev]
+debug = 1
+
+[features]
+# default = ["original"]
+# COSMAC VIP chip8 interpreter
+original = []
+chip48 = []
+# Based on Chip-48
+superchip = ["chip48"]
+amiga = []
+
+[workspace]
+members = ["interpreter"]
+
+[dependencies.nanorand]
+version = "0.5.2"
+default-features = false
+features = ["wyrand"]
