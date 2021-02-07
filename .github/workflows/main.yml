@@ -12,9 +12,12 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     env:
-      CARGO_BUILD_TARGET: x86_64-unknown-linux-gnu
+      RUST_BACKTRACE: 1
     steps:
       - name: Rustup
         run: |
