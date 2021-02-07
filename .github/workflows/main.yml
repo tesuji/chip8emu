@@ -15,7 +15,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os:
+          - ubuntu-latest
+          # - macos-latest
+          - windows-latest
     env:
       RUST_BACKTRACE: 1
     steps:
@@ -49,7 +52,7 @@ jobs:
           key: ${{ runner.os }}-cargo-target-dir-${{ steps.cargo-target-cache.outputs.rust_hash }}-${{ hashFiles('**/Cargo.lock') }}
       - run: cargo check
 
-      - run: sudo apt-get install libsdl2-dev
+      - run: sudo apt-get install --no-install-recommends libsdl2-dev
         if: runner.os == 'Linux'
       - run: |
           mkdir sdl-vendor
