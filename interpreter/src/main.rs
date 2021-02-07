@@ -100,9 +100,8 @@ fn main() {
         }
 
         let elapsed = start.elapsed();
-        match SLEEP_DURATION.checked_sub(elapsed) {
-            Some(dur) => thread::sleep(dur),
-            None => {}
+        if let Some(dur) = SLEEP_DURATION.checked_sub(elapsed) {
+            thread::sleep(dur);
         }
     }
 }
