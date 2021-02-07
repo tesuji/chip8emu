@@ -19,6 +19,7 @@ jobs:
     env:
       RUST_BACKTRACE: 1
     steps:
+      - uses: actions/checkout@v2
       - name: Rustup
         run: |
           rustup override set stable
@@ -28,7 +29,6 @@ jobs:
           rustc -Vv
           cargo -V
           rustup -V
-      - uses: actions/checkout@v2
       - name: Rustfmt
         run: cargo fmt --all -- --check
       - name: Cache CARGO_HOME
