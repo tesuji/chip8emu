@@ -57,7 +57,7 @@ jobs:
       - run: |
           mkdir sdl-vendor
           cd sdl-vendor
-          wget https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip
+          curl -O https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip
           unzip SDL2-devel-2*.zip
           cp SDL2-2.0.*\lib\x64\*.lib 'C:\Program Files\Rust\lib\rustlib\x86_64-pc-windows-msvc\lib'
           cp SDL2-2.0.*\lib\x64\*.dll ..
