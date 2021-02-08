@@ -61,7 +61,7 @@ jobs:
           unzip SDL2-devel-2*.zip
           mkdir /c/Libs
           cp SDL2-2.0.*/lib/x64/*.lib '/c/Libs'
-          echo LIB="$LIB:/c/Libs" >> $GITHUB_ENV
+          echo LIB="C:\Libs" >> $GITHUB_ENV
           cp SDL2-2.0.*/lib/x64/*.dll ..
         shell: bash
         if: runner.os == 'Windows'
