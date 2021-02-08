@@ -59,7 +59,9 @@ jobs:
           cd sdl-vendor
           curl -O https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip
           unzip SDL2-devel-2*.zip
-          cp SDL2-2.0.*/lib/x64/*.lib '/c/Program Files/Rust/lib/rustlib/x86_64-pc-windows-msvc/lib'
+          mkdir /c/Libs
+          cp SDL2-2.0.*/lib/x64/*.lib '/c/Libs'
+          echo LIB="$LIB:/c/Libs" >> $GITHUB_ENV
           cp SDL2-2.0.*/lib/x64/*.dll ..
         shell: bash
         if: runner.os == 'Windows'
