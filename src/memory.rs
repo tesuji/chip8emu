@@ -157,15 +157,8 @@ impl fmt::Display for LoadError {
     }
 }
 
-fn bcd(mut x: u8) -> [u8; 3] {
-    let mut re = [0_u8; 3];
-    let mut idx = re.len();
-    while x > 0 {
-        idx -= 1;
-        re[idx] = x % 10;
-        x /= 10;
-    }
-    re
+fn bcd(x: u8) -> [u8; 3] {
+    [x / 100, x / 10 % 10, x % 10]
 }
 
 const EACH_FONT_SIZE: u16 = 5;
