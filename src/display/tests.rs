@@ -14,11 +14,11 @@ fn test_display() {
     ];
     for y in 0..5 {
         for x in 0..8 {
-            assert_eq!(display.0[x + y * usize::from(WIDTH)], expect[x + y * 8]);
+            assert_eq!(display.vram[x + y * usize::from(WIDTH)], expect[x + y * 8]);
         }
     }
 
     let f = display.draw((0, 0), &crate::memory::FONTS_SET[..5]);
     assert_eq!(f, true);
-    assert!(display.0.iter().all(|&o| o == false));
+    assert!(display.vram.iter().all(|&o| o == false));
 }
