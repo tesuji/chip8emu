@@ -29,3 +29,5 @@ members = ["interpreter"]
 version = "0.5.2"
 default-features = false
 features = ["wyrand"]
+git = "https://github.com/aspenluxxxy/nanorand-rs"
+branch = "master"
