@@ -1,3 +1,5 @@
+use std::mem::size_of;
+
 use nanorand::{WyRand, RNG};
 
 use super::display::{Display, DISPLAY_SIZE};
@@ -28,7 +30,10 @@ pub struct Cpu {
     should_draw: bool,
 }
 
-const _: () = [()][!(std::mem::size_of::<Cpu>() == 136) as usize];
+const _: &str = match size_of::<Cpu>() {
+    136 => "",
+    x => ["size of Cpu != 136"][x],
+};
 
 impl Cpu {
     pub fn new() -> Self {
