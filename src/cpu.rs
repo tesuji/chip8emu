@@ -31,6 +31,9 @@ pub struct Cpu {
 }
 
 const _: &str = match size_of::<Cpu>() {
+    #[cfg(target_vendor = "apple")]
+    128 => "",
+    #[cfg(not(target_vendor = "apple"))]
     136 => "",
     x => ["size of Cpu != 136"][x],
 };
