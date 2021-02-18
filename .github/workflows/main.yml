@@ -34,6 +34,7 @@ jobs:
           rustup -V
       - name: Rustfmt
         run: cargo fmt --all -- --check
+        if: runner.os == 'Linux'
       - name: Cache CARGO_HOME
         uses: actions/cache@v2
         with:
