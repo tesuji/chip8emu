@@ -115,6 +115,7 @@ impl ProgramCounter {
 
 impl I {
     #[must_use]
+    #[cfg(feature = "amiga")]
     pub fn add_assign(&mut self, value: u8) -> bool {
         self.0 += u16::from(value);
         if cfg!(feature = "amiga") {
