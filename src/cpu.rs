@@ -1,6 +1,6 @@
 use std::mem::size_of;
 
-use nanorand::{WyRand, RNG};
+use nanorand::{WyRand, Rng};
 
 use super::display::{Display, DISPLAY_SIZE};
 use super::keypad::{KeyCode, KeyState};

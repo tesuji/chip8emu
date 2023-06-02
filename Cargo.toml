@@ -26,8 +26,8 @@ amiga = []
 members = ["interpreter"]
 
 [dependencies.nanorand]
-version = "0.5.2"
+version = "0.7"
 default-features = false
 features = ["wyrand"]
-git = "https://github.com/aspenluxxxy/nanorand-rs"
-branch = "master"
+# git = "https://github.com/aspenluxxxy/nanorand-rs"
+# branch = "master"
