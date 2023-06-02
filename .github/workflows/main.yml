@@ -22,40 +22,51 @@ jobs:
     env:
       RUST_BACKTRACE: 1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Rustup
         run: |
           rustup toolchain install nightly -c rustfmt
           rustup override set nightly
+
       - name: Rust toolchain info
         run: |
           rustc -Vv
           cargo -V
           rustup -V
+
       - name: Rustfmt
         run: cargo fmt --all -- --check
         if: runner.os == 'Linux'
+
       - name: Cache CARGO_HOME
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Get rustc commit hash
         id: cargo-target-cache
         run: |
           echo "::set-output name=rust_hash::$(rustc -Vv | grep commit-hash | awk '{print $2}')"
+
       - name: Cache cargo build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: target
           key: ${{ runner.os }}-cargo-target-dir-${{ steps.cargo-target-cache.outputs.rust_hash }}-${{ hashFiles('**/Cargo.lock') }}
+
       - run: cargo check
 
-      - run: sudo apt-get install --no-install-recommends libsdl2-dev
+      - name: insall sdl for linux
+        run: sudo apt-get install --no-install-recommends libsdl2-dev
         if: runner.os == 'Linux'
-      - run: |
+
+      - name: install sdl for windows
+        shell: bash
+        if: runner.os == 'Windows'
+        run: |
           mkdir sdl-vendor
           cd sdl-vendor
           curl -O https://www.libsdl.org/release/SDL2-devel-2.0.14-VC.zip
@@ -64,12 +75,12 @@ jobs:
           cp SDL2-2.0.*/lib/x64/*.lib '/c/Libs'
           echo LIB="C:\Libs" >> $GITHUB_ENV
           cp SDL2-2.0.*/lib/x64/*.dll ..
-        shell: bash
-        if: runner.os == 'Windows'
-      - run: |
+
+      - name: install sdl for mac
+        if: runner.os == 'macOS'
+        run: |
           brew install sdl2
           echo LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib" >> $GITHUB_ENV
-        if: runner.os == 'macOS'
 
       - run: cargo check --all
       - run: cargo build
