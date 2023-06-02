@@ -8,7 +8,7 @@ description = "A simple Chip-8 interpreter"
 # More configurations at <https://doc.rust-lang.org/cargo/reference/manifest.html>.
 
 [lib]
-crate-type = ["dylib"]
+# crate-type = ["dylib"]
 
 [profile.dev]
 debug = 1
