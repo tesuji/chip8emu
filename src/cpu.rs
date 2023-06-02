@@ -208,10 +208,10 @@ impl Cpu {
 
             /* The I Register for graphics */
             LoadI { addr } => self.memory.i.store(addr),
-            AddIVx { x } => {
-                let _x = x;
-                if cfg!(feature = "amiga") {
-                    let f = self.memory.i.add_assign(self.v[_x]);
+            AddIVx { x: _x } => {
+                #[cfg(feature = "amiga")]
+                {
+                    let f = self.memory.i.add_assign(self.v[x]);
                     self.v.set_vf(u8::from(f));
                 }
             }
