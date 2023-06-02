@@ -59,7 +59,8 @@ jobs:
 
       - run: cargo check
 
-      - run: sudo apt-get install --no-install-recommends libsdl2-dev
+      - name: insall sdl for linux
+        run: sudo apt-get install --no-install-recommends libsdl2-dev
         if: runner.os == 'Linux'
 
       - name: install sdl for windows
