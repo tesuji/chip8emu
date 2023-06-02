@@ -2,7 +2,7 @@
 name = "chip8emu"
 version = "0.1.0"
 authors = ["Lzu Tao <taolzu@gmail.com>"]
-edition = "2018"
+edition = "2021"
 description = "A simple Chip-8 interpreter"
 
 # More configurations at <https://doc.rust-lang.org/cargo/reference/manifest.html>.
